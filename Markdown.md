@@ -1,10 +1,9 @@
 # Markdown Cheat Sheet
 
 ## Markdown
-### Text quote
+### Quoting text
 `> text`
-> plain text format의 markup language
-
+> Markdown is a markup language with plain text formatting syntax
 
 
 ## Heading
@@ -63,7 +62,7 @@ print('hello')
 - [Python](./python.md)
 #### Indentation
     - `.`: 현재 directory(folder)
-    - `..`: 상위 directory
+    - `..`: 상위 directory 
     - local file 연결 가능
 
 
@@ -89,16 +88,16 @@ print('hello')
 
 
 # Text style
-*기울임* **굵게** ~~취소선~~
+*Italic* **Bold** ~~Strikethrough~~
 ___
 text
 
 |Style|Syntax|Command|Example|Print|
 |------|------|------|------|------|
-|굵게|`** **` or `Ctrl+B`|`**This is bold text**`|**굵게 표시된 텍스트**|
-|기울임꼴|`* *` or `_ _`|`Ctrl+I`|`*This text is italicized*`|*기울임꼴로 표시된 텍스트*|
-|취소선|`~~ ~~`|없음|`~~This was mistaken text~~`|~~실수하여 취소된 텍스트~~|
-|굵게 및 중첩된 기울임꼴|`** **` and `_ _`|없음|`**This text is _extremely_ important**`|**매우 _중요한_ 텍스트**|
-|모든 굵게 및 기울임꼴|`*** ***`|없음|`***All this text is important***`|***이 모든 텍스트가 중요합니다.***|
-|아래 첨자|`<sub> </sub>`|없음|`<sub>This is a subscript text</sub>`|<sub>아래 첨자 텍스트입니다.</sub>
-|위 첨자|`<sup> </sup>`|없음|`<sup>This is a superscript text</sup>`|<sup>위 첨자 텍스트입니다.</sup>|
+|Bold|`** **` or `Ctrl+B`|`**This is bold text**`|**This is bold text**|
+|Italic|`* *` or `_ _`|`Ctrl+I`|`*This text is italicized*`|*This text is italicized|
+|Strikethrough|`~~ ~~`|없음|`~~This was mistaken text~~`|~~This was mistaken text~~|
+|Bold and nested italic|`** **` and `_ _`|없음|`**This text is _extremely_ important**`|**This text is _extremely_ important**|
+|All bold and italic|`*** ***`|없음|`***All this text is important***`|***이 모든 텍스트가 중요합니다.***|
+|Subscript|`<sub> </sub>`|없음|`<sub>This is a subscript text</sub>`|<sub>아래 첨자 텍스트입니다.</sub>
+|Superscript|`<sup> </sup>`|없음|`<sup>This is a superscript text</sup>`|<sup>위 첨자 텍스트입니다.</sup>|
