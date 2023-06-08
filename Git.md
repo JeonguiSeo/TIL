@@ -140,3 +140,20 @@ Git
 - `git clone <git URL>` : Git repository 복사 (파일 및 commit log)
 - Repository간 fork를 통해 파일 수정 및 commit 가능
 - Forked copy에서 pull request 시, repository 소유자에게 commit 요청 가능
+
+#### Clone
+> Copying remote repository
+* 협업 프로젝트 진행 및 외부 오픈소스 참여 시 사용
+    * GitHub의 파일을 타 pc 및 directory에서 작업 시 활용 가능
+
+* Clone manual 
+    - `git clone {Remote repository URL}` : Remote repository 복제
+    - `git remote -v` : Remote repository 정보 확인
+    - `git remote add {Remote repository} {URL}` : Remote repository 추가 (일반적으로 origin)
+    - `git remote rm {Remote repository}` : Remote repository 삭제
+    - `git push {Remote repository} {branch}` : Remote repository에 push
+    - `git pull {Remote repository} {branch}` : Remote repository로부터 pull
+
+    ``` bash
+        
+    ```
