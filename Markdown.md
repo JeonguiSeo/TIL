@@ -21,7 +21,16 @@
 
 ## List
 List는 `ul` or `ol` tag로 표현
-
+### Unordered list
+`*` or `-`
+* A
+* B
+* C
+### Oldered list
+`1`, `2`, `3`
+1. A
+2. B
+3. C
 
 ## Fenced Code Block
 ```
@@ -29,12 +38,15 @@ List는 `ul` or `ol` tag로 표현
 ```
 
 ### python language 지정
+` ``` python ``` `
+
 ``` python
 # 주석
 print('hello')
 ```
 
 ### HTML language 지정
+` ``` html ``` `
 ```html
 <!-- 주석-->
 # 파이썬 주석
@@ -57,10 +69,19 @@ print('hello')
 
 ## Image 삽입
 `![image](./Mojave%20Night.jpg)`
-![image](./Mojave%20Night.jpg)
+![image](./Image/Mojave%20Night.jpg)
 
 
 ## Table
+<pre>
+```
+|이름|나이|
+|--|--|
+|홍길동|100|
+|김철수|50|
+```
+</pre>
+
 |이름|나이|
 |--|--|
 |홍길동|100|
@@ -72,7 +93,7 @@ print('hello')
 ___
 text
 
-|스타일|Syntax|바로 가기 키|예제|출력|
+|Style|Syntax|Command|Example|Print|
 |------|------|------|------|------|
 |굵게|`** **` or `Ctrl+B`|`**This is bold text**`|**굵게 표시된 텍스트**|
 |기울임꼴|`* *` or `_ _`|`Ctrl+I`|`*This text is italicized*`|*기울임꼴로 표시된 텍스트*|
