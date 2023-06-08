@@ -70,7 +70,7 @@ Git
         - `git log -1 —oneline` : 마지막 commit을 한 줄로 출력
         - `git log —oneline --graph` : Commit log를 그래프 형태로 출력
     - `git remote add origin {github URL}` : Git remote repository에 origin이라는 이름으로 url 추가
-        - 기존 remote repository의 이름이 변경된 경우 재실행 필
+        - 기존 remote repository의 이름이 변경된 경우 재실행 필수
     - `git push origin main` : Git remote repository의 origin/main으로 전송
         - `push` : 로컬 저장소의 버전을 원격 저장소로 전송
             - 로컬에서의 작업이 모두 완료된 후, 원격 저장소로 전송
