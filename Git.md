@@ -139,7 +139,7 @@ Git
 ### Fork
 - `git clone <git URL>` : Git repository 복사 (파일 및 commit log)
 - Repository간 fork를 통해 파일 수정 및 commit 가능
-- Forked copy에서 pull request 시, repository 소유자에게 commit 요청 가능
+- Fork copy에서 pull request 시, repository 소유자에게 commit 요청 가능
 
 #### Clone
 > Copying remote repository
@@ -154,6 +154,12 @@ Git
     - `git push {Remote repository} {branch}` : Remote repository에 push
     - `git pull {Remote repository} {branch}` : Remote repository로부터 pull
 
-    ``` bash
-        
+    ```bash
+    git clone {Remote repository URL}
+    git remote add origin {Remote repository URL}
+    git remove -v
+    git add .
+    git commit -m {message}
+    git push origin main
+    git status
     ```
