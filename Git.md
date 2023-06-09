@@ -180,3 +180,4 @@ Git
         <br>⇒ 특정 commit 이후 내역들은 모두 삭제 (`git reflog`를 통한 복구는 가능)
 ![image](./Image/Restore_Revert_Reset.png)
  [Source : [올빼밋의 개발창고](https://olppaemmit.tistory.com/185)]
+ 
