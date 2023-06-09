@@ -23,14 +23,14 @@ Git
 
 - 기초 파일 시스템 명령어
     - `pwd` : 현재 directory 출력 (print working directory)
-    - `cd` {directory_name} directory 이동 (change directory)
+    - `cd` <directory_name> directory 이동 (change directory)
         - `.` : 현재 directory를 의미
         - `..` : 상위 directory를 의미
     - `ls` : 목록 (list)
     - `mkdir` : directory 생성 (make directory)
-    - `touch {file_name}` : 파일 생성
-    - `rm {file_name}` : 파일 삭제
-        - `rm -r {folder_name}` : folder 삭제
+    - `touch <file_name>` : 파일 생성
+    - `rm <file_name>` : 파일 삭제
+        - `rm -r <folder_name>` : folder 삭제
 ### Git의 버전 관리 흐름
 - modified : 파일이 수정된 상태 (from Working directory to Staging area /by add)
 - staged : 수정한 파일이 곧 commit 예정임을 표시 (Staging area)
@@ -56,20 +56,20 @@ Git
         
     - `git add .` :  현재 directory의 모든 파일 및 폴더를 git의 추적 대상으로 추가
     (From Working directory To Staging area)
-        - `git add {file_name1 file_name2 file_name3}`: directory 내 파일의 변경사항을 추가
+        - `git add <file_name1 file_name2 file_name3>`: directory 내 파일의 변경사항을 추가
     - `git status` : 파일 저장 및 staged 여부 확인
         - Git status message
             - `Untracked` : Commit이 발생한 적 없는 파일 (Git이 해당 파일을 추적/관리하고 있지 않음, only in working directory)
             - `Changes not staged for commit` : 변경 내역이 발생하였지만 staged되지 않음 (git add 필요, not in staging area)
             - `nothing to commit, working tree claen` : Git directory와 working directory의 버전이 일치하는 상태 (최신 업데이트)
-    - `git commit -m {message}` : 버전 기록 후 메시지 출력 (Commit 메시지 지정)
+    - `git commit -m <message>` : 버전 기록 후 메시지 출력 (Commit 메시지 지정)
         - `commit` : 변경된 파일의 버전을 기록 (To Repository)
         - 메시지는 작업  내용이 잘 드러나도록 작성
         - `git config --global core.editor "code --wait”` : 상세 메시지 작성을 위한 작업창 생성
     - `git log` : commit 히스토리 조회
         - `git log -1 —oneline` : 마지막 commit을 한 줄로 출력
         - `git log —oneline --graph` : Commit log를 그래프 형태로 출력
-    - `git remote add origin {github URL}` : Git remote repository에 origin이라는 이름으로 url 추가
+    - `git remote add origin <github URL>` : Git remote repository에 origin이라는 이름으로 url 추가
         - 기존 remote repository의 이름이 변경된 경우 재실행 필수
     - `git push origin main` : Git remote repository의 origin/main으로 전송
         - `push` : 로컬 저장소의 버전을 원격 저장소로 전송
@@ -123,12 +123,12 @@ Git
     - develop : 다음 출시 버전을 개발하는 branch
     - feature : 기능을 개발하는 branch
 - Branch manual
-    - `git branch {branch_name}` : branch 생성
-    - `git checkout {branch_name}` : branch로 이동
-    - `git checkout -b {branch_name}` : branch 생성 및 이동
+    - `git branch <branch_name>` : branch 생성
+    - `git checkout <branch_name>` : branch로 이동
+    - `git checkout -b <branch_name>` : branch 생성 및 이동
     - `git branch` : branch 목록 확인
-    - `git branch -d {branch_name}` : branch 삭
-    - `git merge {main branch}` : 각 branch에서 작업된 이력을 main branch에 병합
+    - `git branch -d <branch_name>` : branch 삭
+    - `git merge <main branch>` : 각 branch에서 작업된 이력을 main branch에 병합
         - 병합 진행 시, 서로 다른 commit에서 충돌 발생 가능성 존재
             - 동일한 파일을 수정한 경우
                 - 반드시 직접 해당 파일을 확인하고 적절히 수정
@@ -147,19 +147,36 @@ Git
     * GitHub의 파일을 타 pc 및 directory에서 작업 시 활용 가능
 
 * Clone manual 
-    - `git clone {Remote repository URL}` : Remote repository 복제
+    - `git clone <Remote repository URL>` : Remote repository 복제
     - `git remote -v` : Remote repository 정보 확인
-    - `git remote add {Remote repository} {URL}` : Remote repository 추가 (일반적으로 origin)
-    - `git remote rm {Remote repository}` : Remote repository 삭제
-    - `git push {Remote repository} {branch}` : Remote repository에 push
-    - `git pull {Remote repository} {branch}` : Remote repository로부터 pull
+    - `git remote add <Remote repository> <URL>` : Remote repository 추가 (일반적으로 origin)
+    - `git remote rm <Remote repository>` : Remote repository 삭제
+    - `git push <Remote repository> <branch>` : Remote repository에 push
+    - `git pull <Remote repository> <branch>` : Remote repository로부터 pull
 
     ```bash
-    git clone {Remote repository URL}
-    git remote add origin {Remote repository URL}
-    git remove -v
-    git add .
-    git commit -m {message}
-    git push origin main
+    git clone <Remote repository URL>   # Fork copy URL
+    git remote add origin <Remote repository URL>   # Fork copy URL
+    git remote -v
     git status
+    git add .
+    git commit -m <message>
+    git push origin main
     ```
+#### Restore, Revert, Reset
+- `git restore <file_name>`  : 파일을 최근 commit 시점으로 복구 (Unstaged)
+<br> ⇒ commit되지 않은 작업내용은 복구 불가
+    - `git restore .`:  commit된 이전 버전으로 돌아가기
+    - `git restore --source <commit_hash> <file_name>` : 특정 파일을 특정 commit 시점으로 복구
+    - `git restore --staged <file_name>` : Staging 취소 (git add 취소)
+- `git revert <commit_hash>`  : 특정 commit으로 복구하여 새로운 commit 생성 (기존 히스토리 유지)
+
+> `git reset`은 소스코드 기록 망실 위험이 존재하므로 사용을 지양 
+- `git reset <commit_hash>`  : 특정 commit으로 복구 후, 그 이후 히스토리 모두 삭제
+    - `git reset --soft` : 특정 commit 이후의 내역들을 모두 삭제하되, 삭제된 commit 내용들은 staging 유지
+    <br> ⇒ 즉, 작업 dir 및 stage 내 추가 변경 사항은 유지 (git add 상태)
+    - `git reset --mixed` : 작업 dir 내 변경사항은 유지하며, stage 및 commit을 복구 (Unstaged) [Default option]
+    - `git reset --hard` : 작업 dir 내 변경사항, stage, commit을 모두 복구
+        <br>⇒ 특정 commit 이후 내역들은 모두 삭제 (`git reflog`를 통한 복구는 가능)
+![image](./Image/Restore_Revert_Reset.png)
+ [Source : [올빼밋의 개발창고](https://olppaemmit.tistory.com/185)]
