@@ -1,0 +1,17 @@
+# 특정 파일 제외 (file_name.extension)
+# file_name.txt # 동일한 파일명 모두 제외
+ 
+# 현재 경로의 특정 파일 제외
+# /file_name.txt
+ 
+# 특정 경로의 특정 파일 제외
+# folder_name/file_name.txt
+ 
+# 특정 폴더의 파일 모두 제외
+# folder_name/
+ 
+# 특정 확장자 파일 모두 제외
+# *.txt
+ 
+# 예외 처리
+# !file_name.txt
