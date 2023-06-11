@@ -923,7 +923,7 @@
         print("특정 값 출력3:" , kk3[3][:2])
         ```
         
-- Set data
+- Set
     - Set 생성 방법
         - `set(value)`
         - `{ }`
@@ -1012,97 +1012,115 @@
                 a.symmetric_difference(b))  # {1, 2, 4}
         ```
         
-- Dict data
-    - idx가 존재하지 않는 대신, key value를 이용하여 조회
-    - 조회 속도가 매우 빠르기 때문에, 대량의 데이터 작성에 주로 사
-    - JSON format과 유사
+- Dictionary
+    - idx가 존재하지 않으나, key value를 이용하여 조회
+    - 매우 빠른 조회 속도로, 대량의 데이터 작성에 주로 사용
+    - JSON format과 유사한 구조
         - Java Script Object Notation
             - 프로그램 언어, OS, platform에 대해 독립적
-        - 배열 형식 : [value1, value2]
-        - 객체 포맷 : {key : value}
+        - 배열 형식 : `[value1, value2]`
+        - Object format : `{key : value}`
     - Dict 생성 방법
-        
-        ```python
-        # dict 생성 - immutable key & mutable value
-        m0 = {}
-        m1 = dict()
-        m2 = {'name': '홍길동1', 'age': 20}  # general way
-        m3 = dict(name='홍길동2', age=20)  # key=value 형태
-        
-        # 2) dictionary function
-        print(dir(dict))  # dict 객체
-        ```
-        
+        - `dict(key=a, value=b)`
+        - `{key : value}`
+            ```python
+            # dict 생성 - immutable key & mutable value
+            m0 = {}
+            m1 = dict()
+            m2 = {'name': '홍길동1', 'age': 20}  # general way
+            m3 = dict(name='홍길동2', age=20)  # key=value 형태
+            
+            # 2) dictionary function
+            print(dir(dict))  # dict 객체
+            ```
+            
     - Dict function
-        
-        ```python
-        # (1) dict 추가
-        coffee = {'espresso':'에스프레소', 'latte':'라떼'}
-        print(coffee)  # {'espresso': '에스프레소', 'latte': '라떼'}
-        coffee['lungo'] = '룽고'  # 요소 추가
-        print("요소추가:", coffee)  # {'espresso': '에스프레소', 'latte': '라떼', 'lungo': '룽고'}
-        
-        # (2) dict 변경 ==> 내부적으로 union으로 처리
-        coffee['latte'] = '라떼2'
-        print("요소변경:",coffee)  # {'espresso': '에스프레소', 'latte': '라떼2', 'lungo': '룽고'}
-        
-        # (3) dict 삭제 ==> del
-        del coffee['lungo']  # 요소 삭제
-        print("요소삭제1:",coffee)  # {'espresso': '에스프레소', 'latte': '라떼2'}
-        
-        coffee.pop('latte')  # 요소 삭제
-        print("요소삭제2:",coffee)  # {'espresso': '에스프레소'}
-        
-        coffee.clear()  # 요소 전체 삭제
-        print("요소전체삭제:",coffee)  # {}
-        
-        # (4) 병합 또는 한꺼번에 수정: update
-        x = {'name':'유관순','age':20}
-        y = {'address':'seoul'}
-        x.update(y)
-        print("병합1:",x) # {'name': '유관순', 'age': 20, 'address': 'seoul'}
-        
-        x.update({'name':'aaa2','age':202})
-        print("한꺼번에 병합2:",x) # {'name': 'aaa2', 'age': 202, 'address': 'seoul'}
-        
-        #  (5) dict  정보 얻기
-        coffee = {'espresso': '에스프레소', 'latte': '라떼'}
-        print(coffee)
-        print(len(coffee))  # 길이 출력, 2
-        
-        # key 정보를 가지고 있는 경우
-        print(coffee['espresso'])  # 키를 이용해 값을 조회,  없으면 에러 , 에스프레소
-        print(coffee.get('latte'))  # key로 value 얻기 , 라떼
-        print(coffee.get('latt2e', 'Not a Coffee'))  # 해당 key 부재 시 출력값 지정 가능 (default = None)
-        
-        # key 정보가 없거나 너무 많은 경우
-        print(coffee.keys())  # key 목록 출력, dict_keys(['espresso', 'latte'])
-        keys = list(coffee.keys())  # list 형태의 key 목록으로 지정
-        print(coffee[keys[0]], coffee['espresso'], coffee.get(keys[0]))  # 에스프레소 에스프레소 에스프레소
-        
-        # value값만 조회
-        print(coffee.values())  # value 목록 출력, dict_values(['에스프레소', '라떼'])
-        print(coffee.items(), list(coffee.items()))
-        # key, value 출력
-        # dict_items([('espresso', '에스프레소'), ('latte', '라떼')]) [('espresso', '에스프레소'), ('latte', '라떼')]
-        
-        # (6) 두 개의 자료구조를 하나로 묶음 ==> 짝이 안맞는 것은 제외됨.
-        a = ['a', 'b', 'c']
-        b = [10, 20, 30, 40]
-        print(dict(zip(a, b)))  # {'a': 10, 'b': 20, 'c': 30}
-        ```
+        - 추가 및 변경
+            - `dic['key_name'] = value` : key 지정을 통한 추가 및 변경 
+        - 삭제
+            - `del dic['key_name']` : key 지정을 통한 요소 삭제
+            - `.pop('key_name')` : key 지정을 통한 요소 삭제
+            - `.clear()` : 전체 삭제 
+        - 병합 및 수정
+            - `.update(dict)` : dict 병합
+            - `.update('a' : value1, 'b' : value2, ...)` : 병합을 통한 요소 전체 수정
+        - 조회
+            - `len(dict)` : key 길이 출력
+            -  `.get(key)` : key를 통한 value 조회
+                - `.get('a', 'message')` : key 부재 시 출력값 지정 (default = None)
+            - `.keys()` : key 목록 출력
+            - `.values()` : value 목록 출력
+            - `.items()` : (key, value) 목록 출력
+        - 생성
+            - dict(zip(a, b)) : key 목록인 a와 value 목록인 b를 통해 dictionary 생성
+                - 개수가 맞지 않는 요소는 생성 시 제외       
+
+            ```python
+            # (1) dict 추가
+            coffee = {'espresso':'에스프레소', 'latte':'라떼'}
+            print(coffee)  # {'espresso': '에스프레소', 'latte': '라떼'}
+            coffee['lungo'] = '룽고'  # 요소 추가
+            print("요소추가:", coffee)  # {'espresso': '에스프레소', 'latte': '라떼', 'lungo': '룽고'}
+            
+            # (2) dict 변경 ==> 내부적으로 union으로 처리
+            coffee['latte'] = '라떼2'
+            print("요소변경:",coffee)  # {'espresso': '에스프레소', 'latte': '라떼2', 'lungo': '룽고'}
+            
+            # (3) dict 삭제 ==> del
+            del coffee['lungo']  # 요소 삭제
+            print("요소삭제1:",coffee)  # {'espresso': '에스프레소', 'latte': '라떼2'}
+            
+            coffee.pop('latte')  # 요소 삭제
+            print("요소삭제2:",coffee)  # {'espresso': '에스프레소'}
+            
+            coffee.clear()  # 요소 전체 삭제
+            print("요소전체삭제:",coffee)  # {}
+            
+            # (4) 병합 또는 한꺼번에 수정: update
+            x = {'name':'유관순','age':20}
+            y = {'address':'seoul'}
+            x.update(y)
+            print("병합1:",x) # {'name': '유관순', 'age': 20, 'address': 'seoul'}
+            
+            x.update({'name':'aaa2','age':202})
+            print("한꺼번에 병합2:",x) # {'name': 'aaa2', 'age': 202, 'address': 'seoul'}
+            
+            #  (5) dict  정보 얻기
+            coffee = {'espresso': '에스프레소', 'latte': '라떼'}
+            print(coffee)
+            print(len(coffee))  # 길이 출력, 2
+            
+            # key 정보를 가지고 있는 경우
+            print(coffee['espresso'])  # 키를 이용해 값을 조회,  없으면 에러 , 에스프레소
+            print(coffee.get('latte'))  # key로 value 얻기 , 라떼
+            print(coffee.get('latt2e', 'Not a Coffee'))  # 해당 key 부재 시 출력값 지정 가능 (default = None)
+            
+            # key 정보가 없거나 너무 많은 경우
+            print(coffee.keys())  # key 목록 출력, dict_keys(['espresso', 'latte'])
+            keys = list(coffee.keys())  # list 형태의 key 목록으로 지정
+            print(coffee[keys[0]], coffee['espresso'], coffee.get(keys[0]))  # 에스프레소 에스프레소 에스프레소
+            
+            # value값만 조회
+            print(coffee.values())  # value 목록 출력, dict_values(['에스프레소', '라떼'])
+            print(coffee.items(), list(coffee.items()))
+            # key, value 출력
+            # dict_items([('espresso', '에스프레소'), ('latte', '라떼')])
+            
+            # (6) 두 개의 자료구조를 하나로 묶음 ==> 짝이 안맞는 것은 제외됨.
+            a = ['a', 'b', 'c']
+            b = [10, 20, 30, 40]
+            print(dict(zip(a, b)))  # {'a': 10, 'b': 20, 'c': 30}
+            ```
         
 - 집합 자료형 변환
+    - `str(value)` : str로 변경
+    - `list(value)`: list로 변경
+    - `tuple(value)`: tuple로 변경
+    - `set(value)`: set으로 변경
+    - `dict(value)`: dict로 변경
+        - dict를 list, set, tuple로 변경하는 경우, key만을 반환
     
     ```python
-    '''
-        str(value) : str로 변경
-        list(value): list로 변경
-        tuple(value): tuple로 변경
-        set(value): set으로 변경
-        dict(value): dict로 변경
-    '''
-    
     # list -> tuple,set
     a = [10, 20, 30, 30]
     a2 = tuple(a)
