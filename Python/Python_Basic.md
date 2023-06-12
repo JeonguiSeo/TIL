@@ -1799,7 +1799,7 @@ class Cat(Pet):  # Cat is a Pet (상속 관계)
     # [<class '__main__.Cat'>, <class '__main__.Pet'>, <class 'object'>]
     ```
         
-##### 다형성
+###### 다형성
 - 본래 OOP는 동일 이름을 가진 method를 불허 (One for One)
     - 단, pythond과 C++는 다중 상속을 허용
 - 상속 및 재정의를 전제조건으로, 상속 요소가 다양한 하위 요소를 통합하여 사용
@@ -1810,13 +1810,13 @@ class Cat(Pet):  # Cat is a Pet (상속 관계)
     
     - Method orverride 또한 다형성 사
 
-##### 은닉화 (캡슐화)
+###### 은닉화 (캡슐화)
 - 객체의 일부 구현 내용에 대한 외부로부터의 직접 접근을 차단 (Class 외부 조회 불가)
 - 객체의 속성 및 그 기능을 하나로 묶는 것
 - Class 내에서 instance variable 앞에 access modifier를 적용하여 구현
     - `__`(dunder) :  변수 은닉화 (incapsulation), class 내에서만 접근 가능
     - `_`(underscore) : class 및 해당 class를 상속한 child class에서 접근 가능
-- 추상화
+###### 추상화
 - 객체의 공통 속성과 기능을 추출하여 정의
 - 추상화 시 type hinting 권장
     
@@ -1903,6 +1903,51 @@ class Cat(Pet):  # Cat is a Pet (상속 관계)
     ```
 
 ## Reading & Writing files
+```python
+# 1. 파일 읽기
+# mode: r(읽기), w(쓰기, 덮어쓰기), a(쓰기, 추가)
+# with문을 사용하면 자동 close() - 미사용 시, 명시 필수
+# 1) f.read(): str을 한번에 모두 반환
+with(open(r"C:\Users\juher\py\DE\sample.txt", "r", encoding="utf-8")) as f:
+    contents = f.read()
+    print(contents)
+print("#" * 100)
+
+# 2) f.readline(): 첫 번째 str만을 반환
+with(open(r"C:\Users\juher\py\DE\sample.txt", "r", encoding="utf-8")) as f:
+    line = f.readline()
+    print(line)
+
+# 일반적인 사용법 - 한 줄씩 출력
+with(open(r"C:\Users\juher\py\DE\sample.txt", "r", encoding="utf-8")) as f:
+    while True:
+        line = f.readline()
+        if not line: break  # EOF(End Of File)의 의미
+        print(line, end="")  # end를 통해 '\n'을 무시
+
+print("#" * 100)
+
+# 3) f.readlines(): 모든 str을 list로 한번에 반환
+with(open(r"C:\Users\juher\py\DE\sample.txt", "r", encoding="utf-8")) as f:
+    list_line = f.readlines()
+    print(list_line)
+    for line in list_line:  # list를 분할
+        print(line, end="")
+
+print("#" * 100)
+
+# 예외처리 추가 - 파일 미존재 시, 오류 방지를 위한 예외 지정
+try:
+    with(open(r"C:\Users\juher\py\DE\sample2.txt", "r", encoding="utf-8")) as f:
+        while True:
+            line = f.readline()
+            if not line: break  # EOF(End Of File)의 의미
+            print(line, end="")
+except FileNotFoundError as e:
+    print("error:", e)
+
+print("end. 정상종료")
+```
 
 
 ## JSON 처리
