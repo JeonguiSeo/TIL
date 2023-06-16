@@ -450,3 +450,190 @@ Vectorized operation
     - `np.vsplit(arr, n)` : vertical 방향 n개 분할
     - `np.split(arr, n, axis=0)` : row 방향 n개 분할    
 
+## Function
+### Universal function
+- Data element 개별 처리를 지원하는 범용 함수
+- Universal function 확인 방법
+    ```python
+    print(np.add)   # <ufunc 'add'> ==> univeral function
+    print(np.array)     # <built-in function array>
+    ```
+
+#### Unary ufunc
+- 하나의 인자를 필요로 하는 함수
+    - `np.abs(arr)` : 절대값 반환
+    - `np.around(arr, n)` :반올림 반환
+    - `np.round(arr, n)` : N 소수점 자릿수까지 반올림
+    - `np.rint(arr)` : 가장 가까운 정수로 반올림
+    - `np.fix(arr)` : 0에 가장 가까운 정수로 반환
+    - `np.ceil(arr)` : 크거나 같은 가장 작은 정수값 반환
+    - `np.floor(arr)` : 작거나 같은 가장 큰 정수값 반환
+    - `np.trunc(arr)` : 소수점 절삭
+    - `np.sqrt(arr)` : 제곱근 반환
+
+    - `np.reciprocal(arr)` : 각 element의 역수 반환
+    ```python
+    print(np.reciprocal([1, 2, 3]))  # 1/1 1/2 1/3 ==> [1 0 0]
+    print(np.reciprocal([1., 2., 3.]))  # 1/1 1/2 1/3 ==> [1.  0.5 0.33333333]
+    ```
+
+#### Binary ufunc
+- 두 개의 인자를 필요로 하는 함수
+    - `np.add(arr1, arr2)` :  + 연산과 동일
+    - `np.subtract(arr1, arr2)` :  - 연산과 동일
+    - `np.multiply(arr1, arr2)` :  * 연산과 동일
+    - `np.divide(arr1, arr2)` :  / 연산과 동일
+    - `np.floor_divide(arr1, arr2)` :  // 연산과 동일 ( 몫 연산 )
+    - `np.mod(arr1, arr2)` :  % 연산과 동일 ( 나머지 연산 )
+    - `np.maximum(arr1, arr2)` : 각 idx의 최대값 반환
+    - `np.power(arr1, arr2)` : arr1의 arr2제곱값 반환
+- Boolean idx 반환 함수
+    - `np.greater(arr1, arr2)`
+    - `np.greater_equal(arr1, arr2)`
+    - `np.less(arr1, arr2)`
+    - `np.less_equal(arr1, arr2)`
+    - `np.equal(arr1, arr2)`
+    - `np.not_equal(arr1, arr2)`
+
+#### String function
+- `np.char.string_function` format 사용 <br>
+https://numpy.org/devdocs/reference/routines.char.html#module-numpy.char
+    - `np.char.add(arr1, arr2)` : str 결합 반환
+    - `np.char.multiply(arr1, arr2)` : 다중 str 결합 반환 (dtype(arr) => int)
+    - `np.char.capitalize(arr1)` : 각 element의 첫 문자를 capitalize
+    - `np.char.upper(arr)` : 각 element의 문자를 uppercase로 반환
+    - `np.char.lower(arr)` : 각 element의 문자를 lowercase로 반환    
+    - `np.char.swapcase(arr)` : 각 element의 upper/lowercase 반전 반환
+    - `np.char.title(arr)` : 각 단어의 첫 문자를 uppercase로 반환 (white space 기준)
+    - `np.char.center(arr1, width(int), fillchar='str')` : 문자를 center padding 후 반환
+    - `np.char.ljust(arr1, arr2)` : 문자를 left padding 후 반환
+    - `np.char.rjust(arr1, arr2)` : 문자를 right padding 후 반환
+    - `np.char.encode(arr, 'encoding(str)')` : 문자를 지정된 방식으로 encoding
+    - `np.char.decode(arr1, 'encoding(str)')` : 문자를 지정된 방식으로 decoding
+    - `np.char.join("sep", arr)` : seq로 연결된 str 반환
+    - `np.char.strip(arr[, 'str'])` : 공백 제거 후 문자 반환 (str 지정 시, 해당 문자로 공백 fill)
+    - `np.char.lstrip(arr[, 'str'])` : 좌측 공백 제거 후 문자 반환 (str 지정 시, 해당 문자로 공백 fill)
+    - `np.char.rstrip(arr[, 'str'])` : 우측 공백 제거 후 문자 반환 (str 지정 시, 해당 문자로 공백 fill)
+    - `np.char.split(arr[, 'str'])` : 공백을 기준으로 문자 분리 (str 지정 시, 해당 문자로 분리)
+    - `np.char.replace(arr, 'old_str', 'new_str'[, count=n])` : 특정 문자열 대체 (count 지정 시, 변경 개수 지정) 
+    - `np.char.find(arr, 'str')` : 특정 문자의 각 idx 반환 
+    - `np.char.count(arr, 'str')` : 특정 문자의 각 개수 반환
+    - `np.char.startswith(arr, 'str')` : 특정 문자 시작 여부 boolean 반환
+    - `np.char.endswith(arr, 'str')` : 특정 문자 종료 여부 boolean 반환
+    - `np.char.equal(arr, 'str')` : 특정 문자와의 동일 여부 boolean 반환
+    - `np.char.isdigit(arr)` : 특정 문자의 int 여부 booelan 반환
+    - `np.char.isalpha(arr)` : 특정 문자의 str 여부 booelan 반환
+    - `np.char.islower(arr)` : 특정 문자의 lowercase 여부 booelan 반환
+    - `np.char.isupper(arr)` : 특정 문자의 uppercase 여부 booelan 반환
+    - `np.char.rjust(arr, width=n)` : 문자를 좌측 정렬하고, width를 지정
+    - `np.char.ljust(arr, width=n)` : 문자를 우측 정렬하고, width를 지정
+
+#### Utility function
+- axis를 이용한 row, col 연산 수행
+    - `np.prod(arr[, axis=0|1])`: 각 array element간 곱연산 반환
+        - axis=0 : row axis 기준 상하 연산
+        - axis=0 : col axis 기준 좌후 연산
+        - array 내 NaN 존재 시 연산 불가
+    - `np.nanprod(arr[, axis=0|1])` : array 내 NaN 존재 시, 1로 간주하여 곱연산 반환
+    - `np.cumprod(arr[, axis=0|1])` : array element간 누적 곱연산 반환
+        ```python
+        print("12. np.cumprod(axis=0): ", np.cumprod(c, axis=0)) # [[ 1 2][ 1*3 2*4] [1*3*5 2*4*6]]
+        print("13. np.cumprod(axis=1): ", np.cumprod(c, axis=1)) # [[ 1 1*2] [3 3*4] [5 5*6]]
+        ```
+    - `np.sum(arr[, axis=0|1][, keepdims=True|False])` : array element간 합계 반환
+        - `keepdims=Ture` 지정 시, 1 dim array로 합계 반환
+        - `keepdims=False(default)` 지정 시, scalar로 합계 반환
+        - array 내 NaN 존재 시 연산 불가
+    - `np.nansum(arr[, axis=0|1])` : NaN을 0으로 간주하여 합계 반환
+    - `np.cumsum(arr[, axis=0|1])` : array element간 누적 합계 반환
+    - `np.mean(arr[,axis=0|1])` : array element간 평균 반환
+    - `np.var(arr[, axis=0|1])` : array element간 분산 반환
+    - `np.median(arr[, axis=0|1])` : array element간 중앙값 반환
+        - array의 길이가 even number인 경우, 인접 2개 element의 평균 반환
+    - `np.std(arr[, axis=0|1])` : array element간 표준편차 반환
+
+    - `np.max(arr[, axis=0|1])` : array element간 최대값 반환
+    - `np.min(arr[, axis=0|1])` : array element간 최소값 반환
+    - `np.argmax(arr[, axis=0|1])` : array element간 최대값의 idx 반환
+    - `np.argmin(arr[, axis=0|1])` : array element간 최소값의 idx 반환
+    - `np.sort(arr[, axis=0|1])` : array element 정렬
+        - `axis=None` : flatten 후 반환
+        - `resverse` 미지원 : `np.sort(arr)[::-1]` 형식으로 출력
+            ```python
+            arr = np.array([[8, 2, 4], [100, 67, 33], [99, 44, 77]])
+            # [[  8   2   4]
+            #  [100  67  33]
+            #  [ 99  44  77]]
+            data4 = np.sort(arr, axis=0) # column 단위 sorting
+            print(data4)
+            # [[  8   2   4]
+            #  [ 99  44  33]
+            #  [100  67  77]]
+            data4 = np.sort(arr, axis=1)  # row 단위 sorting
+            print(data4)
+            # [[  2   4   8]
+            #  [ 33  67 100]
+            #  [ 44  77  99]
+            ```
+        - Python sorting
+            1. `sorted(object)`
+                - __builtins__ object function
+                - return sorted copy
+            
+            2. `object.sort(reverse=False)`
+                - object function
+                - `inplace=True`
+
+    - `np.all(arr[, axis=0|1])` : array 내 모든 element가 True인지 boolean으로 반환
+    - `np.any(arr[, axis=0|1])` : array 내 단 하나의 element라도 True인지 boolean으로 반환
+
+    - `arr.transpose()` : transposition array 반환 = `arr.T`
+    - `np.dot(arr, arr)` : array간 곱연산 반환 = `arr1 @ arr2`
+        - 1 dim vector간의 곱연산은 합계 반환
+        - 2 dim array : array간 곱연산 결과 반환
+        ```python
+        arr = np.arange(4).reshape(2,2)
+        print(arr)
+        '''
+        [[0 1]
+        [2 3]]
+        '''
+        print(np.dot(arr, arr))
+        '''
+        [[ 2  3]
+        [ 6 11]]
+        '''
+        print(arr @ arr )
+        '''
+        [[ 2  3]
+        [ 6 11]]
+        '''
+        arr = np.arange(4)
+        print(np.dot(arr, arr)) # 0*0 + 1*1 + 2*2 + 3*3 = 14
+
+
+## Reshaping dimensions
+### Demension expansion
+- `arr.reshape((row, col))` : 지정된 row, col array로 재배열
+    - `(row, col)` 입력 시, tuple format에 유의
+- `np.expand_dims(arr[, axis=0|1])` : array의 dim 확장
+    - `axis=m` : m번째 dim idx 앞에 새로운 dim을 추가
+        - `axis=0`: row dim 추가 (e.g., (3, 2) -> (1, 3, 2))
+        - `axis=1`: col dim 추가 (e.g., (3, 2) -> (3, 1, 2))
+        - `axis=-1`: array의 dim 추가 (e.g., (3, 2) -> (3, 2, 1))
+        - `aixs=(n, m)` : n, m번째 위치에 dim 추가 ((e.g., axis(0, 2) : (3, 2) -> (1, 3, 2, 1)))
+- `arr[np.newaxis]` : array의 dim 확장
+    - `arr[np.newaxis, :]` : row dim 확장
+    - `arr[np.newaxis]` : col dim 확장
+    - `arr[:, np.newaxis]` : col dim 확장
+
+### Dimension reduction
+- `np.squeeze(arr[, axis=n])`
+    - axis 미지정 시, size가 1인 dim을 모두 제거
+    - `axis=m` : m번째 dim idx에 대해서만 size가 1인 dim을 제거 
+
+### To one demension
+- `arr.flatten()` : 1 dim으로 축소
+    - `.copy()` : 원본에 영향이 없는 축소
+- `arr.ravel()` : 1dim으로 축소
+    - `.view()` : link 연결을 통한 원본 수정

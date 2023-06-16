@@ -947,7 +947,7 @@ print(m3) # {10, 20, '홍길동', (100, 200)}
 - 추가
     - `.add()` : immutable object 추가
 - 연산
-    - `.undate()` : 타 object의 모든 요소를 set에 삽입
+    - `.update()` : 타 object의 모든 요소를 set에 삽입
 - 삭제
     - `.discard()` : 특정 요소 삭제 (If the element is not a member, do nothing.)
     - `.remove()` : 특정 요소 삭제 (If the element is not a member, raise a KeyError.)
