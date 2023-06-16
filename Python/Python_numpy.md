@@ -66,7 +66,8 @@ print(list_value, type(list_value))     # [10, 20, 30] <class 'list'>
 print(vector1, type(vector1), vector1.dtype)    # [10 20 30] <class 'numpy.ndarray'> int32
 ```
 
-### Upcasting : Int와 flaot dtype을 함께 변환하는 경우, 보다 큰 범주의 dtype인 float으로 변환
+### Upcasting
+- Int와 flaot dtype을 함께 변환하는 경우, 보다 큰 범주의 dtype인 float으로 변환
 ```python
 list_value = [10., 20, 30]      # float, int, int
 vector1 = np.array(list_value)
