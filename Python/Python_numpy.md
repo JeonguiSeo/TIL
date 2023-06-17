@@ -4,7 +4,7 @@
 - Python에서 지원하지 않는 element간 연산 지원
 - 다차원배열간 산술연산, 다차원배열 및 scalar간 산술연산 지원
 - 비교연산 가능 : True/False boolean indexing
-    - 색인 대상과 동일 길이 필요
+    - indexing 대상과 동일 길이 필요
     - 연산자는 and/or/not 대신 `&`(and), `|`(or), `~`(not) 사용
 
         ``` python
@@ -12,28 +12,29 @@
         ### python basic 연산
         # list + list
         print
-        print([10,20,30]+[10,20,30])
+        print([10, 20, 30] + [10, 20, 30])
 
         # list + scalar
         print([10, 20, 30] * 3)
         ```
 
 ## NumPy 연산
-### vector + vector (shape 대응 필수)
-```python
-arr1D_1 = np.array([10, 20, 30])
-arr1D_2 = np.array([5, 4, 3])
+### vector + vector
+- shape 대응 필수
+    ```python
+    arr1D_1 = np.array([10, 20, 30])
+    arr1D_2 = np.array([5, 4, 3])
 
-print(arr1D_1 + arr1D_2)
-print(arr1D_1 - arr1D_2)
-print(arr1D_1 * arr1D_2)
-print(arr1D_1 / arr1D_2)
-```
+    print(arr1D_1 + arr1D_2)
+    print(arr1D_1 - arr1D_2)
+    print(arr1D_1 * arr1D_2)
+    print(arr1D_1 / arr1D_2)
+    ```
 
 ### vector + scalar (broadcasting 연산)
-- broadcasting : 서로 다른 차원을 가진 두 개의 값 산술 시, 연산이 가능하도록 차원을 자동 일치화
+- broadcasting : 서로 다른 차원을 산술 시, 연산이 가능하도록 차원을 자동 일치화
 ```python
-arr1D_1 = np.array([10,20,30])
+arr1D_1 = np.array([10, 20, 30])
 print("4. numpy의 vector + scalar 연산 처리")
 print(arr1D_1 + 2)  # [12 22 32]
 print(arr1D_1 - 2)  # [ 8 18 28]
@@ -52,8 +53,8 @@ print((arr1D_1 > 15) & (arr1D_1 % 6 == 0))
 ## Vector 생성
 ### np.array(list)
 - list로 ndarray 생성 시, dtype은 기존 list의 값으로 자동 지정
-    - int의 기본 dtype : int32 (4bytes)
-    - float의 기본 dtype : float64 (8bytes)
+    - int의 default dtype : int32 (4bytes)
+    - float의 default dtype : float64 (8bytes)
 - np.array 시, ***ndarray class***로 변환
     - list type의 경우 print 시, element간 ',' 확인 가능
     - 반면 ndarray는 print 시, element간 ',' 확인 불가

@@ -1334,7 +1334,7 @@ print(k)
 x = [n for n in range(1, 11) if n % 2 == 0]
 print(x)
 
-# 3) varible = [ternary expression fpr variable in set-type]
+# 3) varible = [ternary expression for variable in set-type]
 x = [0 if n % 2 ==0 else 1 for n in range(1, 11)]
 print(x)
 ```
