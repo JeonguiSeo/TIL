@@ -254,6 +254,11 @@ df = pd.DataFrame({"col1": [4, 5, 6],
 - `df.var(axis=0|1, skipna=True/False)` : 각 col/row 분산 반환
 - `df.std(axis=0|1, skipna=True/False)` : 각 col/row 표준편차 반환
 - `df.count(axis=0|1)` : NaN 제외 각 col/row data 개수 반환
+- `df.value_counts(dropna=True, ascending=False, sort=True, normalize=False)` : 각 column의 value에 대한 모든 발생 횟수 반환
+    - `dropna=False` : 결과에 NaN을 포함
+    - `ascending=True` : ascending order로 정렬
+    - `sort=False` : 특정 순서 없이 결과 반환
+    - `normalize=True` : 상대적 빈도의 비율을 반환
 - `df.describe()` : descriptive statistics 반환 (count, mean, std, min, quantile)
 
 
