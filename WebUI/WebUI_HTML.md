@@ -62,7 +62,7 @@
         - `nextSibling` : 현재노드의 다음 형제 노드를 반환한다.
         - `previousSibling` : 현재 노드의 이전 형제 노드를 반환한다.
 
-### JavaScript
+## JavaScript
 - `<script>` tag를 명시하여 사용
 - Internal use
     ```html
@@ -73,7 +73,7 @@
     <script src="file_path"></script>
     ```
 
-### HTML tag
+## HTML tag
 - `<meta>` : web page 관련 추가 정보 제공
 - `<base>` : 문서 내 모든 link의 기본 주소 및 target 명시
     - 반드시 `<head>` tag 영역 내 사용
@@ -149,15 +149,15 @@
 - `<ul>` : unordered list
     - `type="circle|square|disc"` : list type 지정
 - Text format tags
-    - <b>: bold
-    - <i>: italic formatting
-    - <small>: smaller
-    - <sub>: subscript
-    - <sup>: superscript
-    - <ins>: underline
-    - <del>: strikethrough effect
+    - `<b>`: bold
+    - `<i>`: italic formatting
+    - `<small>`: smaller
+    - `<sub>`: subscript
+    - `<sup>`: superscript
+    - `<ins>`: underline
+    - `<del>`: strikethrough effect
 
-### Sementic tag
+## Sementic tag
 ![image](sementic_tag.png)
 
 |***Tag***|***Usage***|
