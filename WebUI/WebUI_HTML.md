@@ -414,7 +414,7 @@ Expected time
 |>|`&gt;`|
 
 
-### path designation
+### Path designation
 - file or target(html, dynamic) path 지정
     - `href=`, `src=`, `action=`
 - 상대 경로 :
