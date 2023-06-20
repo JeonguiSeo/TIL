@@ -798,7 +798,7 @@ div {
     }
     .d{
       font-size: medium;
-    }
+    } 
     .e{
       font-size: large;
     }
