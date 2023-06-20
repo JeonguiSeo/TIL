@@ -4,7 +4,7 @@
     - Property
         - Color, position, font 등의 style 지정
         ```css
-        Selector{
+        Selector{ 
             Property_1: value1;
             Property_2: value2;
         }
