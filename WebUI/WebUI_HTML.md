@@ -172,7 +172,7 @@
     - `<del>`: strikethrough effect
 
 ## Sementic tag
-![image](image/sementic_tag.png)
+![image](Image/sementic_tag.png)
 
 |***Tag***|***Usage***|
 |---|---|

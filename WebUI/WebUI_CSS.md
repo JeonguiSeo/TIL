@@ -529,7 +529,7 @@
     ```
 
 ### Box model
-![image](image/Box_Model.png)
+![image](Image/Box_Model.png)
 ```html
 <style type="text/css">
 div {
