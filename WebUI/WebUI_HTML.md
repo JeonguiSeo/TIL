@@ -3,6 +3,9 @@
 - User & Web browser
 - URL을 통해 Server에 접근 요청
     - `http://<server IP>:<port Number>/<resource>`
+    - `http` protocol
+        - Connectionless : Client의 server 요청 시, 응답 후 바로 TCP/IP 연결을 종료
+        - Stateless : Server가 client의 이전 상태를 보존하지 않음
     - `https` : 보안 관련 protocol
 ## Server
 - 일반적으로 사용하는 web server를 지칭
@@ -57,10 +60,11 @@
     - Node간의 관계
         - `parentNode` : 부모 노드
         - `childNodes` : 자식 노드 리스트
+        - `Descendent node` : 자식 노드를 포함한 자손 리스트
         - `firstChild` : 첫번째 자식 노드
-        - `lastChild` : 마지막 자식 노드가 
-        - `nextSibling` : 현재노드의 다음 형제 노드를 반환한다.
-        - `previousSibling` : 현재 노드의 이전 형제 노드를 반환한다.
+        - `lastChild` : 마지막 자식 노드
+        - `nextSibling` : 현재노드의 다음 형제 노드
+        - `previousSibling` : 현재 노드의 이전 형제 노드
 
 ## JavaScript
 - `<script>` tag를 명시하여 사용
@@ -72,6 +76,16 @@
     ```html
     <script src="file_path"></script>
     ```
+
+### JavaScript 관점의 HTML5 특징
+- 다양한 API 제공
+    - Canvas: 2D graphic rendering
+    - Web Storage: Client-side data storage
+    - Web Socket: Bi-directional communication
+    - Web SQL Database: Client-side database
+    - Web Messaging: Communication with other windows or frames
+    - Drag-and-drop: Dragging and dropping functionality
+    - Geolocation: Location information provision
 
 ## HTML tag
 - `<meta>` : web page 관련 추가 정보 제공
@@ -158,7 +172,7 @@
     - `<del>`: strikethrough effect
 
 ## Sementic tag
-![image](sementic_tag.png)
+![image](image/sementic_tag.png)
 
 |***Tag***|***Usage***|
 |---|---|
@@ -417,12 +431,27 @@ Expected time
 ### Path designation
 - file or target(html, dynamic) path 지정
     - `href=`, `src=`, `action=`
-- 상대 경로 :
+- Relative path :
     - `/`로 시작하지 않는 path
         - `./` : current path
         - `../` : parent directory
     - 현재 file의 directory를 기준으로 탐색
-- 절대 경로 :
+    - HTML source 변경에도 영향을 받지 않음
+- Absolute path :
     - `/`로 시작하는 path
+        - Port number 이후의 path
         - `/` : root path
     - `/`를 기준으로 source를 탐색
+    - html source 변경 시, 모든 path 변경 필요
+```html
+<body>
+    http://{port_num}/html_source/a/path.html
+    http://{port_num}/html_source/b/001.png
+    http://{port_num}/html_source/b/test.js
+    <h2>Relative path</h2>
+    <img src="../b/001.png" width="100" height="100">    
+    <h2>Absolute path</h2>
+    <img src="/html_source/b/001.png" width="100" height="100">
+</body>
+```
+
