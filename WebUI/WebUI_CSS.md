@@ -529,7 +529,7 @@
     ```
 
 ### Box model
-![image](image/CSS_Box_Model.png)
+![image](image/Box_Model.png)
 ```html
 <style type="text/css">
 div {
@@ -978,7 +978,6 @@ div {
     - Flex contatiner와 flex item에 적용 가능한 속성 상이
     - Parent node : Flex container
         - `flex-direction` : 배치 방향을 지정
-            ![image](image/Flex-direction.png)
             ```html
             <style type="text/css">
                 .container{
