@@ -10,7 +10,7 @@
     - 메모장으로는 확인 불가
     - Web 환경 - Colab, Kaggle
 ### 주의사항
-- Dent 및 space, enter 사용에 유의
+- Indentation 및 space, enter 사용에 유의
 - Upper/lower case 구분
     - True, False는 반드시 첫 문자를 upper case로 작성
 - Double/single quote는 구분하지 않음

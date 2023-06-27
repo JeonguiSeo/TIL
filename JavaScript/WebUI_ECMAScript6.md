@@ -651,11 +651,62 @@ function func_name(var, ...){
 - User-generated event
     - Button click, mouse over, drag, etc.
     - Keyborad input
-- System-generated event : Web browser가 HTML docs를 기반으로 DOM tree를 생성
+- System-generated event : Web browser의 HTML docs 기반 DOM tree 완성 시 발생 (onload)
     - `<body>` tag 내에서 사용
-    ```javascript
-    <body onload="func_name"></body>
-    ```
+        ```javascript
+        <button onclick="func_name"></buttom>
+        ```
+    - DOM tree 생성 시, tag에 해당하는 object 제공
+#### Object path
+- Document object 이용
+- Document vaiable 이용
+    - `property`
+    - `method` : DOM tree의 특정 node 접근 가능
+        - ID를 통한 접근 : `docuemnt.getElementByID("id_value")`
+        - CSS selector를 통한 접근 :
+            - "CSS_selector 사용 시, selector 형식 입력에 주의 (`.` - Class, `#` - ID, etc.)
+            - `document.querySelector("CSS_selector")` : 1개의 node에 접근
+            - `document.querySelectorAll("CSS_selector")` : n개의 node에 접근
+        ```html
+        <script>
+
+            function k (){
+                var p = document.getElementById("x");   // p tag object
+                console.dir(p);
+                console.log(p.innerHTML);   // <span>Hello</span>
+                console.log(p.innerText);   // Hello
+
+                var p = document.getElementById("x").innerText; // string, method chain
+                console.log(p); // Hello
+
+                ////////////////////////////////////
+                var x = document.querySelector("#x")    // ID selector
+
+                var x = document.querySelector(".y")    // Class selector
+
+                var x = document.querySelectorAll("p"); // Nodelist(array) 반환
+                console.log(x, x[1], x[0].innerText, x[1].innerText);
+                // [p#x, p.y], <p class="y">world</p>, 'Hello', 'world'
+            }
+            // head tag 내에서 body tag에 접근하기 위해서는 function/onload 사용 필수  
+
+            function value_change(){
+                var x = document.querySelector(".y");
+                x.innerText="New world";
+                // document.querySelector(".y").innerHTML = "New world"
+                document.querySelector(".y").innerHTML = "<h1>New world</h1>"
+            }
+
+        </script>
+        </head>
+        <body onload="k()">
+
+            <p id="x"><span>Hello</span></p>
+            <p class="y">world</p>
+            <button onclick="value_change()">Change value</button>
+
+        </body>
+        ```
 
 ### Event source
 - Event가 발생하는 tag (e.g., `<button></button>`)
@@ -664,23 +715,35 @@ function func_name(var, ...){
 - Click, double click, mouse over, etc.
 
 ### Event handler
-- Web page 내 발생하는 여러 event에 대응 처리하는 function을 연결하는 역할 수행
-- Event source에 설정하여 tag 내에서 사용
+- Web page 내 발생하는 여러 event를 대응 처리하는 function에 연결하는 역할 수행
+- Event source의 tag 내에 설정하여 사용
+    - 단, `onsubmit`은 `<form>` tag 내에 설정
 - `onclick`, `onmouseover`, `onmouseover`, `onmouseout`, `onkeyup`
 ```javascript
 <button onclick = "func_name()">Text</button>
 ```
 
+#### DOM Level 0
+- Inline event model, classic event model에 해당
+    - Inline event model : tag 내에 지정하여 사용
+    - Traditional event model : function 내에 지정하여 사용
+
+#### DOM Level 2
+- W3C(standard) event model에 해당
+
 ### Event object
-- Event 발생 시, 자동 생성되어 function에 전달
+- Event 발생 시, 자동 생성되어 event handler가 호출하는 function에 전달
+- `event` variable를 통해 사용
     ```javascript
     function fun() {
         console.log("Event object:", event);
     }
     ```
 - Event method
-    - `event.preventDefault()`; : submit, a href와 같은 무조건적 action 기능을 방지
-    - `event.stopPropagation()`; : Event 전파 방지 - 계층 구조에서 상위 node에 event가 전파되지 않도록 설정
+    - `event.preventDefault()`; : submit, a href, action과 같은 무조건적 action 기능을 방지
+        - 즉, event가 발생한 요소의 기본 동작을 방지
+    - `event.stopPropagation()`; : Event 전파 방지
+        - 계층 구조에서 상위 node에 event가 전파되지 않도록 설정
     ```html
     <head>
     <script>
@@ -697,14 +760,161 @@ function func_name(var, ...){
     </head>
     <body>
         <button onclick="fun()">OK</button>
-
-        <form action="target.html" onsubmit="fun2()">
+        <form action="target.html" onsubmit="fun2()"> <!--onsubmit은 form tag에 지정-->
             Name <input type="text" name="username"><br>
             Age <input type="text" name="age"><br>
             <input type="submit" value="submit">
         </form>
+        <div style="background-color: aqua;" onclick="a()">
+            a
+            <div style="background-color: blueviolet;" onclick="b()">
+                <!--기본적으로 b를 click 시, 상위 node인 a까지 동작하나, stopPropagation()을 통해 전파 방지-->
+            b
+            </div>
+        </div>
     </body>
     ```
+## Ajax
+- Asynchronous Javascript and XML : 비동기 방식의 web 통신
+    - Synchronization : Browser-server간의 request-search-response가 순서대로 발생
+        - Server 응답 완료 전까지 browser 대기
+        - 작업 순서가 보장되나 성능이 저하되는 단점 존재
+        - 응답 시 HTML document 전체를 반환하여 reload
+    - Asynchronization : Browser-server간의 request-search-response를 대기 없이 진행
+        - Server 응답 완료 전에도 browser 작업 가능
+        - 작업 순서는 보장되지 않으나, 성능 향상
+        - 응답 시 XML, JSON data를 반환하여 window의 일부를 변경
+    - XMLHttpRequset object
+        - [reqres.in](https://reqres.in)에서 JSON 반환 실습 가능
+            - JSON viewer plugin install 권장
+    - JSON object - string 변경 method
+        - `JSON.stringify()` : JavasScript object -> JSON string
+        - `JSON.parse()` : JSON string -> JavaScript object
+    ```HTML
+    <head>
+        <script>
+        
+            var httpRequest;    // Global variable로 사용하기 위해 function block 외부에서 선언
+            function req(){
+                // Object 생성
+                httpRequest = new XMLHttpRequest();
+
+                console.dir(httpRequest);
+
+                // Response 처리를 위한 callback function 호출 event handler 등록
+                httpRequest.onreadystatechange = responseFun;
+                
+                // URL info 및 추가 info 설정
+                httpRequest.open("get", "https://reqres.in/api/users/2");
+
+                // Request
+                httpRequest.send(null); // get 방식인 경우 null 지정
+            }   
+            
+            function responseFun(){
+                if(httpRequest.readyState==4 && httpRequest.status==200){
+                    var data = httpRequest.responseText;
+                    console.log(data, typeof data);
+
+                    var jsonData = JSON.parse(data);
+                    console.log(jsonData, typeof jsonData);
+
+                    var id = jsonData.data.id;
+                    var email = jsonData.data.email;
+                    var first_name = jsonData.data.first_name;
+                    var last_name = jsonData.data.last_name;
+                    var avatar = jsonData.data.avatar;
+                    console.log(id, email, first_name, last_name, avatar);
+
+                    var table = `<table>
+                                    <tr>
+                                        <th>id</th>
+                                        <th>email</th>
+                                        <th>first_name</th>
+                                        <th>last_name/th>
+                                        <th>avatar</th>
+                                    </tr>
+                                    <tr>
+                                        <td>${id}</td>
+                                        <td>${email}</td>
+                                        <td>${first_name}</td>
+                                        <td>${last_name}</td>
+                                        <td><img src="${avatar}" width="100" height="100"></td>
+                                    </tr>
+                                </table>`
+                    document.querySelector("#result").innerHTML=table;
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <button onclick="req()">reqres.in</button>
+        <div id="result"></div>
+    </body>
+    ```
+
+## Destructuring
+### Array destructuring
+```javascript
+        var [a, b, c] = [10, 20 ,30];
+        console.log(a, b, c);   // 10 20 30
+
+        var [a, b, c] = [10, 20];
+        console.log(a, b, c);   // 10 20 undefined
+
+        var [a, b, c=1] = [10, 20];
+        console.log(a, b, c);   // 10 20 1
+
+        var [a, b, ...c] = [10, 20, 30, 40, 50, 60];
+        console.log(a, b, c);   // 10 20 [30, 40, 50, 60]
+```
+
+### JSON destructuring
+- Key 출력 시, 각 value 반환
+    ```javascript
+    var {a, b} = {a: 100, b: 200};
+    console.log(a, b);  // 100 200
+    ```
+
+## Template literals
+- String 작성 시, `" "`, `' '`, `` ` ` `` 사용 가능
+    - 단, row 변경 시 작업 용이성 및 출력 형태 유지를 위해 backtick(`` ` ` ``) 사용 권장
+        ```javascript
+        var x = "A";
+
+        var n = "<table> \
+                    <tr> \
+                        <td>"+x+"</td> \
+                    </tr> \
+                    </table>";
+        console.log(n);
+        /*
+
+        <table>                     <tr>                         <td>A</td>                     </tr>                     </table>
+
+        */
+
+        var x = "A";
+        var n = `<table>
+                    <tr>
+                        <td>${x}</td>
+                    </tr>
+                    </table>`;
+        console.log(n);
+
+        /*
+
+        <table>
+                    <tr>
+                        <td>A</td>
+                    </tr>
+                    </table>
+
+        */
+
+
+        ```
+
 
 ## Node.js
 - Chrome V8 JavaScript engine으로 build된 JavaScript runtime
