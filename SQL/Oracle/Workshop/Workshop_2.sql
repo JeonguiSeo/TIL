@@ -1,0 +1,45 @@
+-- TEST -- 1. 2001입학 사학과 학생 수 조회 (JOIN 미사용)
+
+SELECT DEPARTMENT_NO
+FROM TB_DEPARTMENT
+WHERE DEPARTMENT_NAME = '사학과';
+
+SELECT COUNT(STUDENT_NAME) AS "학생 수"
+FROM TB_STUDENT
+WHERE EXTRACT(YEAR FROM ENTRANCE_DATE) = '2001'
+AND DEPARTMENT_NO = '003';
+
+-- TEST - 2. 공학 계열 학과 중, 입학정원 20 이상 ~ 30 이하인 학과의 계열, 학과명, 정원 조회
+-- 학과이름을 기준으로 오름차순 정렬
+SELECT CATEGORY AS "계열", DEPARTMENT_NAME AS "학과 수", CAPACITY AS "정원" 
+FROM TB_DEPARTMENT
+WHERE CATEGORY = '공학'
+AND (CAPACITY BETWEEN 20 AND 30)
+ORDER BY 2 ASC;
+
+-- TEST - 3. '학'자를 포함한 계열의 소속 학과 수를 계열, 학과 수 GROUP BY로 출력
+SELECT CATEGORY AS "계열", COUNT(DEPARTMENT_NAME) AS "학과 수"
+FROM TB_DEPARTMENT td 
+WHERE CATEGORY LIKE '%학'
+GROUP BY CATEGORY
+ORDER BY 2 DESC;
+
+--TEST - 4. '영어영문학과' 교수이름, 출생년도, 주소 조회 후, 나이가 많은 순으로 정렬 (JOIN 미사용)
+SELECT PROFESSOR_NAME AS "교수 이름", 
+	SUBSTR(PROFESSOR_SSN, 1, 2) AS "출생년도", 
+	PROFESSOR_ADDRESS AS "주소"
+FROM TB_PROFESSOR
+WHERE DEPARTMENT_NO = '002'
+ORDER BY 2 ASC;
+
+--TEST - 5. 국어국문학과 학생 중 서울 거주 학생의 학과번호, 학생이름, 휴학 여부 조회
+-- 학생이름으로 오름차순 정렬, 휴학 여부의 값이 'Y'이면 '휴학', 'N'이면 '정상'으로 출력 (DECODE 함수 사용)
+
+SELECT DEPARTMENT_NO AS "학과번호", STUDENT_NAME AS "학생이름",
+	CASE ABSENCE_YN WHEN 'Y' THEN '휴학'
+								WHEN 'N' THEN '정상'
+	END AS "휴학 여부"
+FROM TB_STUDENT ts
+WHERE DEPARTMENT_NO = '001'
+AND STUDENT_ADDRESS LIKE '서울%'
+ORDER BY 2 ASC;
