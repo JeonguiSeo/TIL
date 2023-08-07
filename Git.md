@@ -42,7 +42,7 @@ Git
     - Repository: Commit이 기록되는 공간
 - Git code
     - `git init`: 새로운 git repository 생성
-    - `git init` 이전에 main이 확인되는 경우, working directory 재할당
+        - `git init` 이전에 main이 확인되는 경우, working directory 재할당
         
         ```bash
         rm -rf .git
